@@ -1,0 +1,17 @@
+# KNOWN-ISSUE OB2 (expected to fail, see the .xfail file).
+#
+# obs_clean -wires must leave the outputs unchanged.  Today it removes 'm'
+# although z = m[0] still uses it.  Yosys replaces that reference with an
+# undriven $delete_wire placeholder, so z is no longer driven by a.
+#
+# This test asserts the correct behaviour (equivalence), so it fails today.
+
+read_rtlil ../../data/rtlil/obs_clean.il
+design -save pre
+
+obs_clean -wires
+
+rename top gate
+design -copy-from pre -as gold top
+miter -equiv -flatten -make_assert gold gate miter
+sat -verify -prove-asserts miter

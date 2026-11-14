@@ -1,0 +1,1 @@
+OB4: obs_clean deletes a cell whose type has no module definition, and the logic that only feeds it.

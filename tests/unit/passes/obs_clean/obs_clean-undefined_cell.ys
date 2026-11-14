@@ -1,0 +1,16 @@
+# KNOWN-ISSUE OB4 (expected to fail, see the .xfail file).
+#
+# u_macro drives the output y, but its type 'macro' has no module definition,
+# so obs_clean cannot tell that its port o is an output.  It treats u_macro as
+# driving nothing and deletes it together with g_w, the logic that only feeds
+# it.  opt_clean keeps both cells.
+#
+# This test asserts the correct behaviour (both cells survive), so it fails
+# today.
+
+read_rtlil ../../data/rtlil/obs_clean_undefined.il
+
+obs_clean
+
+select -assert-count 1 c:u_macro
+select -assert-count 1 c:g_w

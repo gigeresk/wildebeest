@@ -1,0 +1,1 @@
+OB2: obs_clean -wires removes a wire that is still read, so the output it feeds is left undriven.
