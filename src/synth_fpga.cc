@@ -1530,15 +1530,15 @@ struct SynthFpgaPass : public ScriptPass {
     //
     if (y2xor.count(y) == 0) {
 
-      // If this 'y' leaf has been already visited then set this info.
+      // A leaf reached an even number of times cancels out (x ^ x = 0), so
+      // toggle it in the leaves of 'xh' (the XOR head) rather than inserting
+      // it. Otherwise a repeated leaf would be kept once in the rebuilt tree.
       //
-      if ((xh->leaves).find(y) != (xh->leaves).end()) {
-        // log_warning("Found duplicated leaf during XOR tree analysis\n");
+      if (xh->leaves.count(y)) {
+        xh->leaves.erase(y);
+      } else {
+        xh->leaves.insert(y);
       }
-
-      // Insert 'y' in the leaves of 'xh' (the XOR head)
-      //
-      xh->leaves.insert(y);
 
       // Associate an Id to this leaf if not visited yet.
       //

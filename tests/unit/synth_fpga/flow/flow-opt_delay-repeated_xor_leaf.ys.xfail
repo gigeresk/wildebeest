@@ -1,1 +1,0 @@
-SF7: -opt delay XOR-tree balancing keeps a repeated leaf instead of cancelling it.
