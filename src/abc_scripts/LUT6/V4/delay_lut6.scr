@@ -2,7 +2,7 @@ time
 echo " "
 echo "** Starting ABC DELAY LUT6 optimization and mapping !!!"
 
-write_blif in.blif
+write_blif in.blif; backup
 
 &get -n -m
 
@@ -11,7 +11,7 @@ echo "&st; &if -sz -C 3 -K 11 -S 66 "
 &st; &if -sz -C 3 -K 11 -S 66 ; &save; &ps; time
 &put
 
-read_blif in.blif
+restore
 
 &get -n -m
 
@@ -37,7 +37,7 @@ echo ""
 echo "&shrink; &dch -s -C 300; &if -K 6 -a; &satlut;"
 &shrink; &dch -s -C 300; &if -K 6 -a; &satlut; &save; &ps; time
 
-read_blif in.blif
+restore
 
 &get -n -m;
 

@@ -3,14 +3,14 @@ time
 echo " "
 echo "** Starting ABC AREA LUT6 optimization and mapping !!!"
 
-write_blif in.blif
+write_blif in.blif; backup
 
 &get -n -m
 
 strash; muxes -g; &get -n -m; &st; &if -K 6 -a; &save -a; &ps
 &put
 
-read_blif in.blif
+restore
 
 &get -n -m
 
@@ -19,7 +19,7 @@ echo "&st; &if -sz -C 3 -K 11 -S 66 -a"
 &st; &if -sz -C 3 -K 11 -S 66 -a ; &save -a; &ps; time
 &put
 
-read_blif in.blif
+restore
 
 &get -n -m
 
@@ -33,7 +33,7 @@ read_blif in.blif
 
 &dch -s -C 300; &if -K 6 -a; &satlut; &save -a; &ps; time
 
-read_blif in.blif
+restore
 
 &get -n -m
 
@@ -42,7 +42,7 @@ echo "&st; &lf -K 6 -e;"
 &st; &lf -K 6 -e; &save -a; &ps; time
 &put
 
-read_blif in.blif
+restore
 
 &get -n -m
 
@@ -50,7 +50,7 @@ echo ""
 &st; &lf -K 6 -e; &save -a; &ps; time
 &put
 
-read_blif in.blif
+restore
 
 strash
 
@@ -76,7 +76,7 @@ if -K 6 -a
 &get -n -m; &save -a; &ps ; time
 &put
 
-read_blif in.blif
+restore
 
 strash
 

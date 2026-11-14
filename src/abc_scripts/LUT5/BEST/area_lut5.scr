@@ -4,14 +4,14 @@ echo " "
 echo "** Starting ABC AREA LUT5 optimization and mapping (Zero Asic Corp.)"
 echo ""
 
-write_blif area_lut5.blif
+write_blif area_lut5.blif; backup
 
 &get -n -m
 
 &st; &if -sz -C 5 -K 9 -S 55 -a ; &save -a; &ps; time
 &put
 
-read_blif area_lut5.blif
+restore
 
 strash
 

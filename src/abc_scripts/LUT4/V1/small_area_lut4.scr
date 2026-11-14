@@ -4,27 +4,27 @@ echo " "
 echo "** Starting ABC SMALL AREA LUT4 optimization and mapping (Zero Asic Corp.)"
 echo ""
 
-write_blif small_area.blif
+write_blif small_area.blif; backup
 
 &get -n -m
 
 &st; &if -sz -C 5 -K 7 -S 44 -a ; &save -a; &ps; time
 &put
 
-read_blif small_area.blif
+restore
 
 &get -n -m
 
 &st; &lf -K 4 -e; &save -a; &ps; time
 &put
 
-read_blif small_area.blif
+restore
 
 &get -n -m
 
 &put
 
-read_blif small_area.blif
+restore
 
 strash
 
@@ -42,7 +42,7 @@ if -K 4 -a
 &get -n -m; &save -a; &ps ; time
 &put
 
-read_blif small_area.blif
+restore
 
 strash
 

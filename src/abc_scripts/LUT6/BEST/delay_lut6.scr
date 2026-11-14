@@ -3,7 +3,7 @@ echo " "
 echo "** Starting ABC DELAY LUT6 optimization and mapping (Zero Asic Corp.)"
 echo ""
 
-write_blif delay_lut6.blif
+write_blif delay_lut6.blif; backup
 
 &get -n -m
 
@@ -14,7 +14,7 @@ echo "&st; &if -sz -C 3 -K 11 -S 66 "
 &st; &if -sz -C 3 -K 11 -S 66 ; &save; &ps; time
 &put
 
-read_blif delay_lut6.blif
+restore
 
 &get -n -m
 
@@ -22,7 +22,7 @@ echo ""
 echo "&st; &if -K 6 ;"
 &st; &if -K 6 ; &ps; time
 
-read_blif delay_lut6.blif
+restore
 
 &get -n -m
 
@@ -31,7 +31,7 @@ echo "&st; &lf -K 6 -e;"
 &st; &lf -K 6 -e; &save; &ps; time
 &put
 
-read_blif delay_lut6.blif
+restore
 
 &get -n -m;
 
